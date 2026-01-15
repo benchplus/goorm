@@ -47,20 +47,20 @@ go test -bench=. -benchmem
 ### 运行特定 ORM 的基准测试
 
 ```bash
+# 仅 ZORM
+go test -bench=ZORM -benchmem
+
+# 仅 BORM
+go test -bench=BORM -benchmem
+
 # 仅 GORM
 go test -bench=GORM -benchmem
 
 # 仅 XORM
 go test -bench=XORM -benchmem
 
-# 仅 ZORM
-go test -bench=ZORM -benchmem
-
 # 仅 SQLX
 go test -bench=SQLX -benchmem
-
-# 仅 BORM
-go test -bench=BORM -benchmem
 ```
 
 ### 运行特定测试用例
@@ -185,8 +185,6 @@ go test -bench=GetByID -benchmem
 | SQLX | 128,347 | 26,328 | 1,828 |
 | GORM | 156,564 | 34,004 | 2,242 |
 | XORM | 201,267 | 82,534 | 3,893 |
-
-**详细结果**: 查看英文版 `README.md` 中的 “Detailed Results” 小节获取完整基准测试数据。
 
 ## 测试数据库
 

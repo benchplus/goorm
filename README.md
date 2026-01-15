@@ -47,20 +47,20 @@ go test -bench=. -benchmem
 ### Run Specific ORM Benchmark
 
 ```bash
+# ZORM only
+go test -bench=ZORM -benchmem
+
+# BORM only
+go test -bench=BORM -benchmem
+
 # GORM only
 go test -bench=GORM -benchmem
 
 # XORM only
 go test -bench=XORM -benchmem
 
-# ZORM only
-go test -bench=ZORM -benchmem
-
 # SQLX only
 go test -bench=SQLX -benchmem
-
-# BORM only
-go test -bench=BORM -benchmem
 ```
 
 ### Run Specific Test Case
