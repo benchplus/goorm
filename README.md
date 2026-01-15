@@ -94,6 +94,8 @@ The benchmark results show:
 | GetAll | 🚀 | 🚀 | ✈️ | ✈️ | 🐌 |
 
 > 🐌 for very-slow, ✈️ for fast, 🚀 for very-fast.
+>
+> ⭐ indicates the ORM is **both fast and memory-efficient** for this test case (Pareto-optimal in **ns/op** and **B/op**, lower is better). Stars are placed in the **ns/op** and **B/op** columns.
 
 ### Detailed Results
 
@@ -101,88 +103,88 @@ The benchmark results show:
 
 - **Go Version**: 1.21+
 - **Database**: SQLite (in-memory, DSN uses `cache=shared&mode=memory`)
-- **CPU**: VirtualApple @ 2.50GHz
+- **CPU**: M4 Pro
 - **OS**: darwin (amd64)
 
 #### InsertSingle (Single Record Insertion)
 
 | ORM | ns/op | B/op | allocs/op |
 |-----|-------|------|-----------|
+| BORM | 2,970 ⭐ | 512 ⭐ | 22 |
+| ZORM | 3,439 ⭐ | 512 ⭐ | 22 |
 | GORM | 19,041 | 6,384 | 125 |
+| SQLX | 183,124 | 692 ⭐ | 26 |
 | XORM | 193,387 | 2,749 | 62 |
-| ZORM | 3,439 | 512 | 22 |
-| SQLX | 183,124 | 692 | 26 |
-| BORM | 2,970 | 512 | 22 |
 
 #### InsertBatch (Batch Insertion - 100 records)
 
 | ORM | ns/op | B/op | allocs/op |
 |-----|-------|------|-----------|
+| BORM | 101,798 ⭐ | 61,914 ⭐ | 1,216 |
+| ZORM | 103,583 ⭐ | 61,913 ⭐ | 1,216 |
 | GORM | 206,664 | 79,744 | 2,116 |
+| SQLX | 364,005 | 52,194 ⭐ | 2,232 |
 | XORM | 494,382 | 107,849 | 2,750 |
-| ZORM | 103,583 | 61,913 | 1,216 |
-| SQLX | 364,005 | 52,194 | 2,232 |
-| BORM | 101,798 | 61,914 | 1,216 |
 
 #### GetByID (Single Record Retrieval)
 
 | ORM | ns/op | B/op | allocs/op |
 |-----|-------|------|-----------|
-| GORM | 8,618 | 4,254 | 98 |
-| XORM | 15,006 | 5,095 | 173 |
+| BORM | 4,943 ⭐ | 1,139 ⭐ | 58 |
 | ZORM | 5,061 | 1,139 | 58 |
-| SQLX | 9,508 | 1,355 | 62 |
-| BORM | 4,943 | 1,139 | 58 |
+| GORM | 8,618 | 4,254 | 98 |
+| SQLX | 9,508 | 1,355 ⭐ | 62 |
+| XORM | 15,006 | 5,095 | 173 |
 
 #### GetByIDs (Multiple Records Retrieval - 10 records)
 
 | ORM | ns/op | B/op | allocs/op |
 |-----|-------|------|-----------|
+| ZORM | 19,725 ⭐ | 4,583 ⭐ | 229 |
+| BORM | 19,728 ⭐ | 4,583 ⭐ | 229 |
+| SQLX | 25,820 | 5,123 | 250 |
 | GORM | 27,167 | 8,419 | 320 |
 | XORM | 40,291 | 14,048 | 542 |
-| ZORM | 19,725 | 4,583 | 229 |
-| SQLX | 25,820 | 5,123 | 250 |
-| BORM | 19,728 | 4,583 | 229 |
 
 #### Update (Record Update)
 
 | ORM | ns/op | B/op | allocs/op |
 |-----|-------|------|-----------|
+| ZORM | 2,172 ⭐ | 510 ⭐ | 20 |
+| BORM | 2,196 ⭐ | 510 ⭐ | 20 |
 | GORM | 13,500 | 7,421 | 124 |
 | XORM | 164,220 | 4,173 | 113 |
-| ZORM | 2,172 | 510 | 20 |
-| SQLX | 171,572 | 722 | 25 |
-| BORM | 2,196 | 510 | 20 |
+| SQLX | 171,572 | 722 ⭐ | 25 |
 
 #### Delete (Record Deletion)
 
 | ORM | ns/op | B/op | allocs/op |
 |-----|-------|------|-----------|
+| ZORM | 1,727 ⭐ | 191 ⭐ | 11 |
+| BORM | 1,789 ⭐ | 191 ⭐ | 11 |
 | GORM | 10,860 | 5,821 | 97 |
 | XORM | 157,872 | 3,114 | 86 |
-| ZORM | 1,727 | 191 | 11 |
-| SQLX | 179,034 | 303 | 16 |
-| BORM | 1,789 | 191 | 11 |
+| SQLX | 179,034 | 303 ⭐ | 16 |
 
 #### Count (Count Query)
 
 | ORM | ns/op | B/op | allocs/op |
 |-----|-------|------|-----------|
+| ZORM | 1,702 ⭐ | 496 ⭐ | 23 |
+| BORM | 1,717 ⭐ | 496 ⭐ | 23 |
 | GORM | 4,473 | 2,792 | 44 |
+| SQLX | 6,783 | 568 ⭐ | 26 |
 | XORM | 9,188 | 2,457 | 71 |
-| ZORM | 1,702 | 496 | 23 |
-| SQLX | 6,783 | 568 | 26 |
-| BORM | 1,717 | 496 | 23 |
 
 #### GetAll (Paginated Query - limit 100, offset)
 
 | ORM | ns/op | B/op | allocs/op |
 |-----|-------|------|-----------|
+| ZORM | 111,041 | 23,632 | 1,723 |
+| BORM | 112,534 | 23,632 | 1,723 |
+| SQLX | 128,347 | 26,328 | 1,828 |
 | GORM | 156,564 | 34,004 | 2,242 |
 | XORM | 201,267 | 82,534 | 3,893 |
-| ZORM | 111,041 | 23,632 | 1,723 |
-| SQLX | 128,347 | 26,328 | 1,828 |
-| BORM | 112,534 | 23,632 | 1,723 |
 
 ## Test Database
 
@@ -216,22 +218,6 @@ To add a new ORM library:
 2. Implement the `ORMInterface` in a new file
 3. Add the ORM to the `orms` map in `goorm_test.go`
 4. Add benchmark functions following the naming pattern
-
-Example:
-
-```go
-// ent/ent.go
-package ent
-
-type EntORM struct {
-    // implementation
-}
-
-func (e *EntORM) Init(dsn string) error {
-    // implementation
-}
-// ... implement other methods
-```
 
 ## Contributing
 
