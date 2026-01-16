@@ -96,14 +96,14 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr><td>InsertSingle</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFA500;">🟠 3.13x</td><td style="background-color: #FFA500;">🟠 3.46x</td><td style="background-color: #FF6347;">🔴 7.09x</td><td style="background-color: #FF6347;">🔴 60.61x</td><td style="background-color: #FF6347;">🔴 61.12x</td></tr>
-<tr><td>InsertBatch</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFC107;">🟡 1.30x</td><td style="background-color: #FFA500;">🟠 2.50x</td><td style="background-color: #FFC107;">🟡 1.89x</td><td style="background-color: #FFA500;">🟠 3.57x</td><td style="background-color: #FFA500;">🟠 3.33x</td></tr>
-<tr><td>GetByID</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.01x</td><td style="background-color: #FFC107;">🟡 1.52x</td><td style="background-color: #FFC107;">🟡 1.85x</td><td style="background-color: #FFC107;">🟡 1.90x</td><td style="background-color: #FFA500;">🟠 2.00x</td><td style="background-color: #FFA500;">🟠 3.12x</td></tr>
-<tr><td>GetByIDs</td><td style="background-color: #4CAF50;">🟢 1.01x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFC107;">🟡 1.17x</td><td style="background-color: #FFC107;">🟡 1.38x</td><td style="background-color: #FFC107;">🟡 1.39x</td><td style="background-color: #FFC107;">🟡 1.36x</td><td style="background-color: #FFC107;">🟡 1.98x</td></tr>
-<tr><td>Update</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFA500;">🟠 2.67x</td><td style="background-color: #FF6347;">🔴 9.86x</td><td style="background-color: #FF6347;">🔴 7.06x</td><td style="background-color: #FF6347;">🔴 82.52x</td><td style="background-color: #FF6347;">🔴 84.00x</td></tr>
-<tr><td>Delete</td><td style="background-color: #4CAF50;">🟢 1.01x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFA500;">🟠 2.31x</td><td style="background-color: #FFA500;">🟠 2.62x</td><td style="background-color: #FF6347;">🔴 6.40x</td><td style="background-color: #FF6347;">🔴 105.84x</td><td style="background-color: #FF6347;">🔴 101.85x</td></tr>
-<tr><td>Count</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.01x</td><td style="background-color: #FFA500;">🟠 2.15x</td><td style="background-color: #FF6347;">🔴 13.40x</td><td style="background-color: #FFA500;">🟠 2.99x</td><td style="background-color: #FFA500;">🟠 4.34x</td><td style="background-color: #FF6347;">🔴 5.95x</td></tr>
-<tr><td>GetAll</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFC107;">🟡 1.14x</td><td style="background-color: #FFC107;">🟡 1.21x</td><td style="background-color: #FFC107;">🟡 1.43x</td><td style="background-color: #FFC107;">🟡 1.18x</td><td style="background-color: #FFC107;">🟡 1.91x</td></tr>
+<tr><td>单条插入</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #FFA500;">🟠 3.13x</td><td style="background-color: #FFA500;">🟠 3.46x</td><td style="background-color: #FF6347;">🔴 7.09x</td><td style="background-color: #FF6347;">🔴 60.61x</td><td style="background-color: #FF6347;">🔴 61.12x</td></tr>
+<tr><td>批量插入</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #FFC107;">🟡 1.30x</td><td style="background-color: #FFA500;">🟠 2.50x</td><td style="background-color: #FFC107;">🟡 1.89x</td><td style="background-color: #FFA500;">🟠 3.57x</td><td style="background-color: #FFA500;">🟠 3.33x</td></tr>
+<tr><td>按ID查询</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #FFC107;">🟡 1.52x</td><td style="background-color: #FFC107;">🟡 1.85x</td><td style="background-color: #FFC107;">🟡 1.90x</td><td style="background-color: #FFA500;">🟠 2x</td><td style="background-color: #FFA500;">🟠 3.12x</td></tr>
+<tr><td>按IDs查询</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #FFC107;">🟡 1.17x</td><td style="background-color: #FFC107;">🟡 1.38x</td><td style="background-color: #FFC107;">🟡 1.39x</td><td style="background-color: #FFC107;">🟡 1.36x</td><td style="background-color: #FFC107;">🟡 1.98x</td></tr>
+<tr><td>更新</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #FFA500;">🟠 2.67x</td><td style="background-color: #FF6347;">🔴 9.86x</td><td style="background-color: #FF6347;">🔴 7.06x</td><td style="background-color: #FF6347;">🔴 82.52x</td><td style="background-color: #FF6347;">🔴 84x</td></tr>
+<tr><td>删除</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #FFA500;">🟠 2.31x</td><td style="background-color: #FFA500;">🟠 2.62x</td><td style="background-color: #FF6347;">🔴 6.40x</td><td style="background-color: #FF6347;">🔴 105.84x</td><td style="background-color: #FF6347;">🔴 101.85x</td></tr>
+<tr><td>计数</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #FFA500;">🟠 2.15x</td><td style="background-color: #FF6347;">🔴 13.40x</td><td style="background-color: #FFA500;">🟠 2.99x</td><td style="background-color: #FFA500;">🟠 4.34x</td><td style="background-color: #FF6347;">🔴 5.95x</td></tr>
+<tr><td>查询全部</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #4CAF50;">🟢 1x</td><td style="background-color: #FFC107;">🟡 1.14x</td><td style="background-color: #FFC107;">🟡 1.21x</td><td style="background-color: #FFC107;">🟡 1.43x</td><td style="background-color: #FFC107;">🟡 1.18x</td><td style="background-color: #FFC107;">🟡 1.91x</td></tr>
 </tbody>
 </table>
 
@@ -140,8 +140,8 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>2,913 ⭐</td><td>🟢 1.00x</td><td>464 ⭐</td><td>16</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,916</td><td>🟢 1.00x</td><td>464</td><td>16</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>2,913 ⭐</td><td>🟢 1x</td><td>464 ⭐</td><td>16</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,916</td><td>🟢 1x</td><td>464</td><td>16</td></tr>
 <tr style="background-color: #FFA500;"><td>BUN</td><td>9,123</td><td>🟠 3.13x</td><td>5,405</td><td>27</td></tr>
 <tr style="background-color: #FFA500;"><td>ENT</td><td>10,065</td><td>🟠 3.46x</td><td>2,642</td><td>74</td></tr>
 <tr style="background-color: #FF6347;"><td>GORM</td><td>20,652</td><td>🔴 7.09x</td><td>6,116</td><td>96</td></tr>
@@ -163,8 +163,8 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>104,405</td><td>🟢 1.00x</td><td>59,503</td><td>912</td></tr>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>104,862</td><td>🟢 1.00x</td><td>59,502 ⭐</td><td>912</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>104,405</td><td>🟢 1x</td><td>59,503</td><td>912</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>104,862</td><td>🟢 1x</td><td>59,502 ⭐</td><td>912</td></tr>
 <tr style="background-color: #FFC107;"><td>BUN</td><td>136,110</td><td>🟡 1.30x</td><td>24,455</td><td>723</td></tr>
 <tr style="background-color: #FFC107;"><td>GORM</td><td>197,739</td><td>🟡 1.89x</td><td>74,929</td><td>1,494</td></tr>
 <tr style="background-color: #FFA500;"><td>ENT</td><td>261,124</td><td>🟠 2.50x</td><td>213,805</td><td>3,360</td></tr>
@@ -186,12 +186,12 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>4,729 ⭐</td><td>🟢 1.00x</td><td>939 ⭐</td><td>33</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>4,776</td><td>🟢 1.01x</td><td>939</td><td>33</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>4,729 ⭐</td><td>🟢 1x</td><td>939 ⭐</td><td>33</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>4,776</td><td>🟢 1x</td><td>939</td><td>33</td></tr>
 <tr style="background-color: #FFC107;"><td>BUN</td><td>7,191</td><td>🟡 1.52x</td><td>5,700</td><td>36</td></tr>
 <tr style="background-color: #FFC107;"><td>ENT</td><td>8,766</td><td>🟡 1.85x</td><td>3,812</td><td>103</td></tr>
 <tr style="background-color: #FFC107;"><td>GORM</td><td>8,975</td><td>🟡 1.90x</td><td>4,076</td><td>73</td></tr>
-<tr style="background-color: #FFA500;"><td>SQLX</td><td>9,471</td><td>🟠 2.00x</td><td>1,155</td><td>37</td></tr>
+<tr style="background-color: #FFA500;"><td>SQLX</td><td>9,471</td><td>🟠 2x</td><td>1,155</td><td>37</td></tr>
 <tr style="background-color: #FFA500;"><td>XORM</td><td>14,750</td><td>🟠 3.12x</td><td>4,809</td><td>139</td></tr>
 </tbody>
 </table>
@@ -209,8 +209,8 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>18,082 ⭐</td><td>🟢 1.00x</td><td>3,511 ⭐</td><td>95</td></tr>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>18,257</td><td>🟢 1.01x</td><td>3,511</td><td>95</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>18,082 ⭐</td><td>🟢 1x</td><td>3,511 ⭐</td><td>95</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>18,257</td><td>🟢 1x</td><td>3,511</td><td>95</td></tr>
 <tr style="background-color: #FFC107;"><td>BUN</td><td>21,171</td><td>🟢 1.17x</td><td>7,467</td><td>107</td></tr>
 <tr style="background-color: #FFC107;"><td>SQLX</td><td>24,623</td><td>🟡 1.36x</td><td>4,051</td><td>116</td></tr>
 <tr style="background-color: #FFC107;"><td>ENT</td><td>24,997</td><td>🟡 1.38x</td><td>9,679</td><td>230</td></tr>
@@ -232,13 +232,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>2,103 ⭐</td><td>🟢 1.00x</td><td>454 ⭐</td><td>13</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,107</td><td>🟢 1.00x</td><td>454</td><td>13</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>2,103 ⭐</td><td>🟢 1x</td><td>454 ⭐</td><td>13</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,107</td><td>🟢 1x</td><td>454</td><td>13</td></tr>
 <tr style="background-color: #FFA500;"><td>BUN</td><td>5,607</td><td>🟠 2.67x</td><td>5,044</td><td>15</td></tr>
 <tr style="background-color: #FF6347;"><td>GORM</td><td>14,845</td><td>🔴 7.06x</td><td>7,442</td><td>99</td></tr>
 <tr style="background-color: #FF6347;"><td>ENT</td><td>20,745</td><td>🔴 9.86x</td><td>5,608</td><td>156</td></tr>
 <tr style="background-color: #FF6347;"><td>SQLX</td><td>173,533</td><td>🔴 82.52x</td><td>654</td><td>16</td></tr>
-<tr style="background-color: #FF6347;"><td>XORM</td><td>176,658</td><td>🔴 84.00x</td><td>4,082</td><td>103</td></tr>
+<tr style="background-color: #FF6347;"><td>XORM</td><td>176,658</td><td>🔴 84x</td><td>4,082</td><td>103</td></tr>
 </tbody>
 </table>
 
@@ -255,8 +255,8 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,646</td><td>🟢 1.00x</td><td>160</td><td>7</td></tr>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,667</td><td>🟢 1.01x</td><td>159 ⭐</td><td>7</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,646</td><td>🟢 1x</td><td>160</td><td>7</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,667</td><td>🟢 1x</td><td>159 ⭐</td><td>7</td></tr>
 <tr style="background-color: #FFA500;"><td>BUN</td><td>3,798</td><td>🟠 2.31x</td><td>4,880</td><td>14</td></tr>
 <tr style="background-color: #FFA500;"><td>ENT</td><td>4,318</td><td>🟠 2.62x</td><td>1,832</td><td>44</td></tr>
 <tr style="background-color: #FF6347;"><td>GORM</td><td>10,536</td><td>🔴 6.40x</td><td>5,571</td><td>75</td></tr>
@@ -278,8 +278,8 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,546 ⭐</td><td>🟢 1.00x</td><td>440 ⭐</td><td>14</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,555</td><td>🟢 1.01x</td><td>440</td><td>14</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,546 ⭐</td><td>🟢 1x</td><td>440 ⭐</td><td>14</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,555</td><td>🟢 1x</td><td>440</td><td>14</td></tr>
 <tr style="background-color: #FFA500;"><td>BUN</td><td>3,327</td><td>🟠 2.15x</td><td>1,288</td><td>23</td></tr>
 <tr style="background-color: #FFA500;"><td>GORM</td><td>4,617</td><td>🟠 2.99x</td><td>2,720</td><td>33</td></tr>
 <tr style="background-color: #FFA500;"><td>SQLX</td><td>6,716</td><td>🟠 4.34x</td><td>504</td><td>16</td></tr>
@@ -301,8 +301,8 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>95,365 ⭐</td><td>🟢 1.00x</td><td>14,829 ⭐</td><td>607</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>95,795</td><td>🟢 1.00x</td><td>14,829</td><td>607</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>95,365 ⭐</td><td>🟢 1x</td><td>14,829 ⭐</td><td>607</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>95,795</td><td>🟢 1x</td><td>14,829</td><td>607</td></tr>
 <tr style="background-color: #FFC107;"><td>BUN</td><td>109,081</td><td>🟢 1.14x</td><td>21,955</td><td>709</td></tr>
 <tr style="background-color: #FFC107;"><td>SQLX</td><td>112,556</td><td>🟢 1.18x</td><td>17,526</td><td>712</td></tr>
 <tr style="background-color: #FFC107;"><td>ENT</td><td>115,475</td><td>🟡 1.21x</td><td>43,301</td><td>1,256</td></tr>
