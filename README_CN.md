@@ -15,7 +15,8 @@ Go 语言 ORM 库持续性能基准测试
 - **[GORM](https://gorm.io/)** - Go 最流行的 ORM 库
 - **[SQLX](https://github.com/jmoiron/sqlx)** - 扩展 Go 标准 `database/sql` 库的库
 - **[XORM](https://xorm.io/)** - 简单而强大的 Go ORM
-
+- **[ENT](https://github.com/ent/ent)** - Go 的实体框架
+- **[BUN](https://github.com/uptrace/bun)** - SQL优先 Golang ORM
 ## 基准测试
 
 以下操作进行了基准测试：
@@ -61,6 +62,12 @@ go test -bench=XORM -benchmem
 
 # 仅 SQLX
 go test -bench=SQLX -benchmem
+
+# 仅 BUN
+go test -bench=BUN -benchmem
+
+# 仅 ENT
+go test -bench=ENT -benchmem
 ```
 
 ### 运行特定测试用例
@@ -82,16 +89,16 @@ go test -bench=GetByID -benchmem
 
 ### 快速摘要
 
-| 测试用例 | [**ZORM**](https://github.com/IceWhaleTech/zorm) | [**BORM**](https://github.com/orca-zhang/borm) | [**GORM**](https://gorm.io/) | [**SQLX**](https://github.com/jmoiron/sqlx) | [**XORM**](https://xorm.io/) |
-|---------|---------------------------------------------------|-------------------------------------------------|------------------------------|---------------------------------------------|------------------------------|
-| InsertSingle | 🚀 | 🚀 | ✈️ | 🐌 | 🐌 |
-| InsertBatch | 🚀 | 🚀 | ✈️ | 🐌 | 🐌 |
-| GetByID | 🚀 | 🚀 | ✈️ | ✈️ | 🐌 |
-| GetByIDs | 🚀 | 🚀 | ✈️ | ✈️ | 🐌 |
-| Update | 🚀 | 🚀 | ✈️ | 🐌 | 🐌 |
-| Delete | 🚀 | 🚀 | ✈️ | 🐌 | 🐌 |
-| Count | 🚀 | 🚀 | ✈️ | 🐌 | 🐌 |
-| GetAll | 🚀 | 🚀 | ✈️ | ✈️ | 🐌 |
+| 测试用例 | [**ZORM**](https://github.com/IceWhaleTech/zorm) | [**BORM**](https://github.com/orca-zhang/borm) | [**BUN**](https://bun.uptrace.dev/) | [**ENT**](https://github.com/ent/ent) | [**GORM**](https://gorm.io/) | [**SQLX**](https://github.com/jmoiron/sqlx) | [**XORM**](https://xorm.io/) |
+|---------|---------------------------------------------------|-------------------------------------------------|-------------------------------------|----------------------------------------|------------------------------|---------------------------------------------|------------------------------|
+| InsertSingle | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | 🐌 | 🐌 |
+| InsertBatch | 🚀 | 🚀 | ✈️ | 🐌 | ✈️ | 🐌 | 🐌 |
+| GetByID | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | ✈️ | 🐌 |
+| GetByIDs | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | ✈️ | 🐌 |
+| Update | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | 🐌 | 🐌 |
+| Delete | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | 🐌 | 🐌 |
+| Count | 🚀 | 🚀 | ✈️ | 🐌 | ✈️ | ✈️ | 🐌 |
+| GetAll | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | ✈️ | 🐌 |
 
 > 🐌 表示非常慢, ✈️ 表示快, 🚀 表示非常快
 >
@@ -119,11 +126,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,970 ⭐</td><td>1.00x</td><td>512 ⭐</td><td>22</td></tr>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>3,439 ⭐</td><td>1.16x</td><td>512 ⭐</td><td>22</td></tr>
-<tr style="background-color: #FFA500;"><td>GORM</td><td>19,041</td><td>6.41x</td><td>6,384</td><td>125</td></tr>
-<tr style="background-color: #FF6347;"><td>SQLX</td><td>183,124</td><td>61.66x</td><td>692 ⭐</td><td>26</td></tr>
-<tr style="background-color: #FF6347;"><td>XORM</td><td>193,387</td><td>65.11x</td><td>2,749</td><td>62</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>2,913 ⭐</td><td>🟢 1.00x</td><td>464 ⭐</td><td>16</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,916</td><td>🟢 1.00x</td><td>464</td><td>16</td></tr>
+<tr style="background-color: #FFA500;"><td>BUN</td><td>9,123</td><td>🟠 3.13x</td><td>5,405</td><td>27</td></tr>
+<tr style="background-color: #FFA500;"><td>ENT</td><td>10,065</td><td>🟠 3.46x</td><td>2,642</td><td>74</td></tr>
+<tr style="background-color: #FF6347;"><td>GORM</td><td>20,652</td><td>🔴 7.09x</td><td>6,116</td><td>96</td></tr>
+<tr style="background-color: #FF6347;"><td>SQLX</td><td>176,553</td><td>🔴 60.61x</td><td>632</td><td>18</td></tr>
+<tr style="background-color: #FF6347;"><td>XORM</td><td>178,033</td><td>🔴 61.12x</td><td>2,690</td><td>54</td></tr>
 </tbody>
 </table>
 
@@ -140,11 +149,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>101,798 ⭐</td><td>1.00x</td><td>61,914 ⭐</td><td>1,216</td></tr>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>103,583 ⭐</td><td>1.02x</td><td>61,913 ⭐</td><td>1,216</td></tr>
-<tr style="background-color: #FFC107;"><td>GORM</td><td>206,664</td><td>2.03x</td><td>79,744</td><td>2,116</td></tr>
-<tr style="background-color: #FFA500;"><td>SQLX</td><td>364,005</td><td>3.58x</td><td>52,194 ⭐</td><td>2,232</td></tr>
-<tr style="background-color: #FFA500;"><td>XORM</td><td>494,382</td><td>4.86x</td><td>107,849</td><td>2,750</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>104,405</td><td>🟢 1.00x</td><td>59,503</td><td>912</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>104,862</td><td>🟢 1.00x</td><td>59,502 ⭐</td><td>912</td></tr>
+<tr style="background-color: #FFC107;"><td>BUN</td><td>136,110</td><td>🟡 1.30x</td><td>24,455</td><td>723</td></tr>
+<tr style="background-color: #FFC107;"><td>GORM</td><td>197,739</td><td>🟡 1.89x</td><td>74,929</td><td>1,494</td></tr>
+<tr style="background-color: #FFA500;"><td>ENT</td><td>261,124</td><td>🟠 2.50x</td><td>213,805</td><td>3,360</td></tr>
+<tr style="background-color: #FFA500;"><td>XORM</td><td>347,846</td><td>🟠 3.33x</td><td>98,830</td><td>2,449</td></tr>
+<tr style="background-color: #FFA500;"><td>SQLX</td><td>373,004</td><td>🟠 3.57x</td><td>47,349</td><td>1,622</td></tr>
 </tbody>
 </table>
 
@@ -161,11 +172,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>4,943 ⭐</td><td>1.00x</td><td>1,139 ⭐</td><td>58</td></tr>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>5,061 ⭐</td><td>1.02x</td><td>1,139 ⭐</td><td>58</td></tr>
-<tr style="background-color: #FFC107;"><td>GORM</td><td>8,618</td><td>1.74x</td><td>4,254</td><td>98</td></tr>
-<tr style="background-color: #FFC107;"><td>SQLX</td><td>9,508</td><td>1.92x</td><td>1,355 ⭐</td><td>62</td></tr>
-<tr style="background-color: #FFA500;"><td>XORM</td><td>15,006</td><td>3.03x</td><td>5,095</td><td>173</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>4,729 ⭐</td><td>🟢 1.00x</td><td>939 ⭐</td><td>33</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>4,776</td><td>🟢 1.01x</td><td>939</td><td>33</td></tr>
+<tr style="background-color: #FFC107;"><td>BUN</td><td>7,191</td><td>🟡 1.52x</td><td>5,700</td><td>36</td></tr>
+<tr style="background-color: #FFC107;"><td>ENT</td><td>8,766</td><td>🟡 1.85x</td><td>3,812</td><td>103</td></tr>
+<tr style="background-color: #FFC107;"><td>GORM</td><td>8,975</td><td>🟡 1.90x</td><td>4,076</td><td>73</td></tr>
+<tr style="background-color: #FFA500;"><td>SQLX</td><td>9,471</td><td>🟠 2.00x</td><td>1,155</td><td>37</td></tr>
+<tr style="background-color: #FFA500;"><td>XORM</td><td>14,750</td><td>🟠 3.12x</td><td>4,809</td><td>139</td></tr>
 </tbody>
 </table>
 
@@ -182,11 +195,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>19,725 ⭐</td><td>1.00x</td><td>4,583 ⭐</td><td>229</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>19,728 ⭐</td><td>1.00x</td><td>4,583 ⭐</td><td>229</td></tr>
-<tr style="background-color: #FFC107;"><td>SQLX</td><td>25,820</td><td>1.31x</td><td>5,123</td><td>250</td></tr>
-<tr style="background-color: #FFC107;"><td>GORM</td><td>27,167</td><td>1.38x</td><td>8,419</td><td>320</td></tr>
-<tr style="background-color: #FFA500;"><td>XORM</td><td>40,291</td><td>2.04x</td><td>14,048</td><td>542</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>18,082 ⭐</td><td>🟢 1.00x</td><td>3,511 ⭐</td><td>95</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>18,257</td><td>🟢 1.01x</td><td>3,511</td><td>95</td></tr>
+<tr style="background-color: #FFC107;"><td>BUN</td><td>21,171</td><td>🟢 1.17x</td><td>7,467</td><td>107</td></tr>
+<tr style="background-color: #FFC107;"><td>SQLX</td><td>24,623</td><td>🟡 1.36x</td><td>4,051</td><td>116</td></tr>
+<tr style="background-color: #FFC107;"><td>ENT</td><td>24,997</td><td>🟡 1.38x</td><td>9,679</td><td>230</td></tr>
+<tr style="background-color: #FFC107;"><td>GORM</td><td>25,137</td><td>🟡 1.39x</td><td>7,369</td><td>186</td></tr>
+<tr style="background-color: #FFC107;"><td>XORM</td><td>35,883</td><td>🟡 1.98x</td><td>12,918</td><td>400</td></tr>
 </tbody>
 </table>
 
@@ -203,11 +218,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>2,172 ⭐</td><td>1.00x</td><td>510 ⭐</td><td>20</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,196 ⭐</td><td>1.01x</td><td>510 ⭐</td><td>20</td></tr>
-<tr style="background-color: #FFA500;"><td>GORM</td><td>13,500</td><td>6.22x</td><td>7,421</td><td>124</td></tr>
-<tr style="background-color: #FF6347;"><td>XORM</td><td>164,220</td><td>75.66x</td><td>4,173</td><td>113</td></tr>
-<tr style="background-color: #FF6347;"><td>SQLX</td><td>171,572</td><td>79.01x</td><td>722 ⭐</td><td>25</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>2,103 ⭐</td><td>🟢 1.00x</td><td>454 ⭐</td><td>13</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,107</td><td>🟢 1.00x</td><td>454</td><td>13</td></tr>
+<tr style="background-color: #FFA500;"><td>BUN</td><td>5,607</td><td>🟠 2.67x</td><td>5,044</td><td>15</td></tr>
+<tr style="background-color: #FF6347;"><td>GORM</td><td>14,845</td><td>🔴 7.06x</td><td>7,442</td><td>99</td></tr>
+<tr style="background-color: #FF6347;"><td>ENT</td><td>20,745</td><td>🔴 9.86x</td><td>5,608</td><td>156</td></tr>
+<tr style="background-color: #FF6347;"><td>SQLX</td><td>173,533</td><td>🔴 82.52x</td><td>654</td><td>16</td></tr>
+<tr style="background-color: #FF6347;"><td>XORM</td><td>176,658</td><td>🔴 84.00x</td><td>4,082</td><td>103</td></tr>
 </tbody>
 </table>
 
@@ -224,11 +241,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,727 ⭐</td><td>1.00x</td><td>191 ⭐</td><td>11</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,789 ⭐</td><td>1.04x</td><td>191 ⭐</td><td>11</td></tr>
-<tr style="background-color: #FFA500;"><td>GORM</td><td>10,860</td><td>6.29x</td><td>5,821</td><td>97</td></tr>
-<tr style="background-color: #FF6347;"><td>XORM</td><td>157,872</td><td>91.41x</td><td>3,114</td><td>86</td></tr>
-<tr style="background-color: #FF6347;"><td>SQLX</td><td>179,034</td><td>103.67x</td><td>303 ⭐</td><td>16</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,646</td><td>🟢 1.00x</td><td>160</td><td>7</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,667</td><td>🟢 1.01x</td><td>159 ⭐</td><td>7</td></tr>
+<tr style="background-color: #FFA500;"><td>BUN</td><td>3,798</td><td>🟠 2.31x</td><td>4,880</td><td>14</td></tr>
+<tr style="background-color: #FFA500;"><td>ENT</td><td>4,318</td><td>🟠 2.62x</td><td>1,832</td><td>44</td></tr>
+<tr style="background-color: #FF6347;"><td>GORM</td><td>10,536</td><td>🔴 6.40x</td><td>5,571</td><td>75</td></tr>
+<tr style="background-color: #FF6347;"><td>XORM</td><td>167,642</td><td>🔴 101.85x</td><td>3,043</td><td>80</td></tr>
+<tr style="background-color: #FF6347;"><td>SQLX</td><td>174,217</td><td>🔴 105.84x</td><td>255</td><td>10</td></tr>
 </tbody>
 </table>
 
@@ -245,11 +264,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,702 ⭐</td><td>1.00x</td><td>496 ⭐</td><td>23</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,717 ⭐</td><td>1.01x</td><td>496 ⭐</td><td>23</td></tr>
-<tr style="background-color: #FFA500;"><td>GORM</td><td>4,473</td><td>2.63x</td><td>2,792</td><td>44</td></tr>
-<tr style="background-color: #FFA500;"><td>SQLX</td><td>6,783</td><td>3.98x</td><td>568 ⭐</td><td>26</td></tr>
-<tr style="background-color: #FFA500;"><td>XORM</td><td>9,188</td><td>5.40x</td><td>2,457</td><td>71</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,546 ⭐</td><td>🟢 1.00x</td><td>440 ⭐</td><td>14</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,555</td><td>🟢 1.01x</td><td>440</td><td>14</td></tr>
+<tr style="background-color: #FFA500;"><td>BUN</td><td>3,327</td><td>🟠 2.15x</td><td>1,288</td><td>23</td></tr>
+<tr style="background-color: #FFA500;"><td>GORM</td><td>4,617</td><td>🟠 2.99x</td><td>2,720</td><td>33</td></tr>
+<tr style="background-color: #FFA500;"><td>SQLX</td><td>6,716</td><td>🟠 4.34x</td><td>504</td><td>16</td></tr>
+<tr style="background-color: #FF6347;"><td>XORM</td><td>9,193</td><td>🔴 5.95x</td><td>2,394</td><td>61</td></tr>
+<tr style="background-color: #FF6347;"><td>ENT</td><td>20,720</td><td>🔴 13.40x</td><td>2,384</td><td>54</td></tr>
 </tbody>
 </table>
 
@@ -266,11 +287,13 @@ go test -bench=GetByID -benchmem
 </tr>
 </thead>
 <tbody>
-<tr style="background-color: #4CAF50;"><td>ZORM</td><td>111,041</td><td>1.00x</td><td>23,632</td><td>1,723</td></tr>
-<tr style="background-color: #4CAF50;"><td>BORM</td><td>112,534</td><td>1.01x</td><td>23,632</td><td>1,723</td></tr>
-<tr style="background-color: #FFC107;"><td>SQLX</td><td>128,347</td><td>1.16x</td><td>26,328</td><td>1,828</td></tr>
-<tr style="background-color: #FFC107;"><td>GORM</td><td>156,564</td><td>1.41x</td><td>34,004</td><td>2,242</td></tr>
-<tr style="background-color: #FFC107;"><td>XORM</td><td>201,267</td><td>1.81x</td><td>82,534</td><td>3,893</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>95,365 ⭐</td><td>🟢 1.00x</td><td>14,829 ⭐</td><td>607</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>95,795</td><td>🟢 1.00x</td><td>14,829</td><td>607</td></tr>
+<tr style="background-color: #FFC107;"><td>BUN</td><td>109,081</td><td>🟢 1.14x</td><td>21,955</td><td>709</td></tr>
+<tr style="background-color: #FFC107;"><td>SQLX</td><td>112,556</td><td>🟢 1.18x</td><td>17,526</td><td>712</td></tr>
+<tr style="background-color: #FFC107;"><td>ENT</td><td>115,475</td><td>🟡 1.21x</td><td>43,301</td><td>1,256</td></tr>
+<tr style="background-color: #FFC107;"><td>GORM</td><td>136,701</td><td>🟡 1.43x</td><td>25,311</td><td>1,128</td></tr>
+<tr style="background-color: #FFC107;"><td>XORM</td><td>182,305</td><td>🟡 1.91x</td><td>74,869</td><td>2,771</td></tr>
 </tbody>
 </table>
 
@@ -290,6 +313,9 @@ goorm/
 ├── zorm/          # ZORM 实现
 ├── sqlx/           # SQLX 实现
 ├── borm/           # BORM 实现
+├── bun/            # BUN 实现
+├── ent/             # ENT 实现
+│   └── schema/      # ENT schema 定义
 ├── internal/
 │   ├── models/     # 测试模型 (User, Post)
 │   └── orm/        # 统一的 ORM 接口
@@ -307,6 +333,12 @@ goorm/
 3. 在 `goorm_test.go` 的 `orms` map 中添加 ORM
 4. 按照命名模式添加基准测试函数
 
+**ENT 注意事项**：ENT 需要代码生成。添加 schema 文件后，运行：
+```bash
+go generate ./ent
+```
+这将生成实现所需的 ENT 客户端代码。
+
 ## 贡献
 
 欢迎贡献！请随时提交 Pull Request。
@@ -318,8 +350,10 @@ MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 ## 参考
 
 - 灵感来自 [benchplus/gocache](https://github.com/benchplus/gocache)
-- [ZORM 文档](https://github.com/IceWhaleTech/zorm)
-- [BORM 文档](https://github.com/orca-zhang/borm)
+- [ZORM 仓库](https://github.com/IceWhaleTech/zorm)
+- [BORM 仓库](https://github.com/orca-zhang/borm)
 - [GORM 文档](https://gorm.io/docs/)
 - [XORM 文档](https://xorm.io/docs/)
 - [SQLX 文档](https://jmoiron.github.io/sqlx/)
+- [ENT 文档](https://entgo.io/)
+- [BUN 文档](https://bun.uptrace.dev/)

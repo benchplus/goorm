@@ -6,6 +6,8 @@ import (
 	"testing"
 
 	"github.com/benchplus/goorm/borm"
+	"github.com/benchplus/goorm/bun"
+	"github.com/benchplus/goorm/ent"
 	"github.com/benchplus/goorm/gorm"
 	"github.com/benchplus/goorm/internal/models"
 	"github.com/benchplus/goorm/internal/orm"
@@ -38,6 +40,14 @@ var orms = map[string]struct {
 	"borm": {
 		init: func() orm.Interface { return borm.New() },
 		dsn:  borm.GetDSN,
+	},
+	"bun": {
+		init: func() orm.Interface { return bun.New() },
+		dsn:  bun.GetDSN,
+	},
+	"ent": {
+		init: func() orm.Interface { return ent.New() },
+		dsn:  ent.GetDSN,
 	},
 }
 
@@ -93,6 +103,14 @@ func BenchmarkInsertSingle_BORM(b *testing.B) {
 	benchmarkInsertSingle(b, "borm")
 }
 
+func BenchmarkInsertSingle_BUN(b *testing.B) {
+	benchmarkInsertSingle(b, "bun")
+}
+
+func BenchmarkInsertSingle_ENT(b *testing.B) {
+	benchmarkInsertSingle(b, "ent")
+}
+
 func benchmarkInsertSingle(b *testing.B, ormName string) {
 	orm, cleanup, err := setupORM(ormName)
 	if err != nil {
@@ -134,6 +152,14 @@ func BenchmarkInsertBatch_SQLX(b *testing.B) {
 
 func BenchmarkInsertBatch_BORM(b *testing.B) {
 	benchmarkInsertBatch(b, "borm")
+}
+
+func BenchmarkInsertBatch_BUN(b *testing.B) {
+	benchmarkInsertBatch(b, "bun")
+}
+
+func BenchmarkInsertBatch_ENT(b *testing.B) {
+	benchmarkInsertBatch(b, "ent")
 }
 
 func benchmarkInsertBatch(b *testing.B, ormName string) {
@@ -182,6 +208,14 @@ func BenchmarkGetByID_SQLX(b *testing.B) {
 
 func BenchmarkGetByID_BORM(b *testing.B) {
 	benchmarkGetByID(b, "borm")
+}
+
+func BenchmarkGetByID_BUN(b *testing.B) {
+	benchmarkGetByID(b, "bun")
+}
+
+func BenchmarkGetByID_ENT(b *testing.B) {
+	benchmarkGetByID(b, "ent")
 }
 
 func benchmarkGetByID(b *testing.B, ormName string) {
@@ -236,6 +270,14 @@ func BenchmarkGetByIDs_SQLX(b *testing.B) {
 
 func BenchmarkGetByIDs_BORM(b *testing.B) {
 	benchmarkGetByIDs(b, "borm")
+}
+
+func BenchmarkGetByIDs_BUN(b *testing.B) {
+	benchmarkGetByIDs(b, "bun")
+}
+
+func BenchmarkGetByIDs_ENT(b *testing.B) {
+	benchmarkGetByIDs(b, "ent")
 }
 
 func benchmarkGetByIDs(b *testing.B, ormName string) {
@@ -298,6 +340,14 @@ func BenchmarkUpdate_BORM(b *testing.B) {
 	benchmarkUpdate(b, "borm")
 }
 
+func BenchmarkUpdate_BUN(b *testing.B) {
+	benchmarkUpdate(b, "bun")
+}
+
+func BenchmarkUpdate_ENT(b *testing.B) {
+	benchmarkUpdate(b, "ent")
+}
+
 func benchmarkUpdate(b *testing.B, ormName string) {
 	orm, cleanup, err := setupORM(ormName)
 	if err != nil {
@@ -353,6 +403,14 @@ func BenchmarkDelete_BORM(b *testing.B) {
 	benchmarkDelete(b, "borm")
 }
 
+func BenchmarkDelete_BUN(b *testing.B) {
+	benchmarkDelete(b, "bun")
+}
+
+func BenchmarkDelete_ENT(b *testing.B) {
+	benchmarkDelete(b, "ent")
+}
+
 func benchmarkDelete(b *testing.B, ormName string) {
 	orm, cleanup, err := setupORM(ormName)
 	if err != nil {
@@ -405,6 +463,14 @@ func BenchmarkCount_BORM(b *testing.B) {
 	benchmarkCount(b, "borm")
 }
 
+func BenchmarkCount_BUN(b *testing.B) {
+	benchmarkCount(b, "bun")
+}
+
+func BenchmarkCount_ENT(b *testing.B) {
+	benchmarkCount(b, "ent")
+}
+
 func benchmarkCount(b *testing.B, ormName string) {
 	orm, cleanup, err := setupORM(ormName)
 	if err != nil {
@@ -454,6 +520,14 @@ func BenchmarkGetAll_SQLX(b *testing.B) {
 
 func BenchmarkGetAll_BORM(b *testing.B) {
 	benchmarkGetAll(b, "borm")
+}
+
+func BenchmarkGetAll_BUN(b *testing.B) {
+	benchmarkGetAll(b, "bun")
+}
+
+func BenchmarkGetAll_ENT(b *testing.B) {
+	benchmarkGetAll(b, "ent")
 }
 
 func benchmarkGetAll(b *testing.B, ormName string) {
