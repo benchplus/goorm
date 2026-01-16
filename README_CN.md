@@ -108,83 +108,171 @@ go test -bench=GetByID -benchmem
 
 #### InsertSingle（单条记录插入）
 
-| ORM | ns/op | B/op | allocs/op |
-|-----|-------|------|-----------|
-| BORM | 2,970 ⭐ | 512 ⭐ | 22 |
-| ZORM | 3,439 ⭐ | 512 ⭐ | 22 |
-| GORM | 19,041 | 6,384 | 125 |
-| SQLX | 183,124 | 692 ⭐ | 26 |
-| XORM | 193,387 | 2,749 | 62 |
+<table>
+<thead>
+<tr>
+<th>ORM</th>
+<th>ns/op</th>
+<th>倍数</th>
+<th>B/op</th>
+<th>allocs/op</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,970 ⭐</td><td>1.00x</td><td>512 ⭐</td><td>22</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>3,439 ⭐</td><td>1.16x</td><td>512 ⭐</td><td>22</td></tr>
+<tr style="background-color: #FFA500;"><td>GORM</td><td>19,041</td><td>6.41x</td><td>6,384</td><td>125</td></tr>
+<tr style="background-color: #FF6347;"><td>SQLX</td><td>183,124</td><td>61.66x</td><td>692 ⭐</td><td>26</td></tr>
+<tr style="background-color: #FF6347;"><td>XORM</td><td>193,387</td><td>65.11x</td><td>2,749</td><td>62</td></tr>
+</tbody>
+</table>
 
 #### InsertBatch（批量插入 - 每批 100 条）
 
-| ORM | ns/op | B/op | allocs/op |
-|-----|-------|------|-----------|
-| BORM | 101,798 ⭐ | 61,914 ⭐ | 1,216 |
-| ZORM | 103,583 ⭐ | 61,913 ⭐ | 1,216 |
-| GORM | 206,664 | 79,744 | 2,116 |
-| SQLX | 364,005 | 52,194 ⭐ | 2,232 |
-| XORM | 494,382 | 107,849 | 2,750 |
+<table>
+<thead>
+<tr>
+<th>ORM</th>
+<th>ns/op</th>
+<th>倍数</th>
+<th>B/op</th>
+<th>allocs/op</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>101,798 ⭐</td><td>1.00x</td><td>61,914 ⭐</td><td>1,216</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>103,583 ⭐</td><td>1.02x</td><td>61,913 ⭐</td><td>1,216</td></tr>
+<tr style="background-color: #FFC107;"><td>GORM</td><td>206,664</td><td>2.03x</td><td>79,744</td><td>2,116</td></tr>
+<tr style="background-color: #FFA500;"><td>SQLX</td><td>364,005</td><td>3.58x</td><td>52,194 ⭐</td><td>2,232</td></tr>
+<tr style="background-color: #FFA500;"><td>XORM</td><td>494,382</td><td>4.86x</td><td>107,849</td><td>2,750</td></tr>
+</tbody>
+</table>
 
 #### GetByID（按主键查询单条记录）
 
-| ORM | ns/op | B/op | allocs/op |
-|-----|-------|------|-----------|
-| BORM | 4,943 ⭐ | 1,139 ⭐ | 58 |
-| ZORM | 5,061 ⭐ | 1,139 ⭐ | 58 |
-| GORM | 8,618 | 4,254 | 98 |
-| SQLX | 9,508 | 1,355 ⭐ | 62 |
-| XORM | 15,006 | 5,095 | 173 |
+<table>
+<thead>
+<tr>
+<th>ORM</th>
+<th>ns/op</th>
+<th>倍数</th>
+<th>B/op</th>
+<th>allocs/op</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>4,943 ⭐</td><td>1.00x</td><td>1,139 ⭐</td><td>58</td></tr>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>5,061 ⭐</td><td>1.02x</td><td>1,139 ⭐</td><td>58</td></tr>
+<tr style="background-color: #FFC107;"><td>GORM</td><td>8,618</td><td>1.74x</td><td>4,254</td><td>98</td></tr>
+<tr style="background-color: #FFC107;"><td>SQLX</td><td>9,508</td><td>1.92x</td><td>1,355 ⭐</td><td>62</td></tr>
+<tr style="background-color: #FFA500;"><td>XORM</td><td>15,006</td><td>3.03x</td><td>5,095</td><td>173</td></tr>
+</tbody>
+</table>
 
 #### GetByIDs（按主键批量查询 - 10 条记录）
 
-| ORM | ns/op | B/op | allocs/op |
-|-----|-------|------|-----------|
-| ZORM | 19,725 ⭐ | 4,583 ⭐ | 229 |
-| BORM | 19,728 ⭐ | 4,583 ⭐ | 229 |
-| SQLX | 25,820 | 5,123 | 250 |
-| GORM | 27,167 | 8,419 | 320 |
-| XORM | 40,291 | 14,048 | 542 |
+<table>
+<thead>
+<tr>
+<th>ORM</th>
+<th>ns/op</th>
+<th>倍数</th>
+<th>B/op</th>
+<th>allocs/op</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>19,725 ⭐</td><td>1.00x</td><td>4,583 ⭐</td><td>229</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>19,728 ⭐</td><td>1.00x</td><td>4,583 ⭐</td><td>229</td></tr>
+<tr style="background-color: #FFC107;"><td>SQLX</td><td>25,820</td><td>1.31x</td><td>5,123</td><td>250</td></tr>
+<tr style="background-color: #FFC107;"><td>GORM</td><td>27,167</td><td>1.38x</td><td>8,419</td><td>320</td></tr>
+<tr style="background-color: #FFA500;"><td>XORM</td><td>40,291</td><td>2.04x</td><td>14,048</td><td>542</td></tr>
+</tbody>
+</table>
 
 #### Update（记录更新）
 
-| ORM | ns/op | B/op | allocs/op |
-|-----|-------|------|-----------|
-| ZORM | 2,172 ⭐ | 510 ⭐ | 20 |
-| BORM | 2,196 ⭐ | 510 ⭐ | 20 |
-| GORM | 13,500 | 7,421 | 124 |
-| XORM | 164,220 | 4,173 | 113 |
-| SQLX | 171,572 | 722 ⭐ | 25 |
+<table>
+<thead>
+<tr>
+<th>ORM</th>
+<th>ns/op</th>
+<th>倍数</th>
+<th>B/op</th>
+<th>allocs/op</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>2,172 ⭐</td><td>1.00x</td><td>510 ⭐</td><td>20</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>2,196 ⭐</td><td>1.01x</td><td>510 ⭐</td><td>20</td></tr>
+<tr style="background-color: #FFA500;"><td>GORM</td><td>13,500</td><td>6.22x</td><td>7,421</td><td>124</td></tr>
+<tr style="background-color: #FF6347;"><td>XORM</td><td>164,220</td><td>75.66x</td><td>4,173</td><td>113</td></tr>
+<tr style="background-color: #FF6347;"><td>SQLX</td><td>171,572</td><td>79.01x</td><td>722 ⭐</td><td>25</td></tr>
+</tbody>
+</table>
 
 #### Delete（记录删除）
 
-| ORM | ns/op | B/op | allocs/op |
-|-----|-------|------|-----------|
-| ZORM | 1,727 ⭐ | 191 ⭐ | 11 |
-| BORM | 1,789 ⭐ | 191 ⭐ | 11 |
-| GORM | 10,860 | 5,821 | 97 |
-| XORM | 157,872 | 3,114 | 86 |
-| SQLX | 179,034 | 303 ⭐ | 16 |
+<table>
+<thead>
+<tr>
+<th>ORM</th>
+<th>ns/op</th>
+<th>倍数</th>
+<th>B/op</th>
+<th>allocs/op</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,727 ⭐</td><td>1.00x</td><td>191 ⭐</td><td>11</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,789 ⭐</td><td>1.04x</td><td>191 ⭐</td><td>11</td></tr>
+<tr style="background-color: #FFA500;"><td>GORM</td><td>10,860</td><td>6.29x</td><td>5,821</td><td>97</td></tr>
+<tr style="background-color: #FF6347;"><td>XORM</td><td>157,872</td><td>91.41x</td><td>3,114</td><td>86</td></tr>
+<tr style="background-color: #FF6347;"><td>SQLX</td><td>179,034</td><td>103.67x</td><td>303 ⭐</td><td>16</td></tr>
+</tbody>
+</table>
 
 #### Count（统计查询）
 
-| ORM | ns/op | B/op | allocs/op |
-|-----|-------|------|-----------|
-| ZORM | 1,702 ⭐ | 496 ⭐ | 23 |
-| BORM | 1,717 ⭐ | 496 ⭐ | 23 |
-| GORM | 4,473 | 2,792 | 44 |
-| SQLX | 6,783 | 568 ⭐ | 26 |
-| XORM | 9,188 | 2,457 | 71 |
+<table>
+<thead>
+<tr>
+<th>ORM</th>
+<th>ns/op</th>
+<th>倍数</th>
+<th>B/op</th>
+<th>allocs/op</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>1,702 ⭐</td><td>1.00x</td><td>496 ⭐</td><td>23</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>1,717 ⭐</td><td>1.01x</td><td>496 ⭐</td><td>23</td></tr>
+<tr style="background-color: #FFA500;"><td>GORM</td><td>4,473</td><td>2.63x</td><td>2,792</td><td>44</td></tr>
+<tr style="background-color: #FFA500;"><td>SQLX</td><td>6,783</td><td>3.98x</td><td>568 ⭐</td><td>26</td></tr>
+<tr style="background-color: #FFA500;"><td>XORM</td><td>9,188</td><td>5.40x</td><td>2,457</td><td>71</td></tr>
+</tbody>
+</table>
 
 #### GetAll（分页查询 - limit 100, offset）
 
-| ORM | ns/op | B/op | allocs/op |
-|-----|-------|------|-----------|
-| ZORM | 111,041 | 23,632 | 1,723 |
-| BORM | 112,534 | 23,632 | 1,723 |
-| SQLX | 128,347 | 26,328 | 1,828 |
-| GORM | 156,564 | 34,004 | 2,242 |
-| XORM | 201,267 | 82,534 | 3,893 |
+<table>
+<thead>
+<tr>
+<th>ORM</th>
+<th>ns/op</th>
+<th>倍数</th>
+<th>B/op</th>
+<th>allocs/op</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #4CAF50;"><td>ZORM</td><td>111,041</td><td>1.00x</td><td>23,632</td><td>1,723</td></tr>
+<tr style="background-color: #4CAF50;"><td>BORM</td><td>112,534</td><td>1.01x</td><td>23,632</td><td>1,723</td></tr>
+<tr style="background-color: #FFC107;"><td>SQLX</td><td>128,347</td><td>1.16x</td><td>26,328</td><td>1,828</td></tr>
+<tr style="background-color: #FFC107;"><td>GORM</td><td>156,564</td><td>1.41x</td><td>34,004</td><td>2,242</td></tr>
+<tr style="background-color: #FFC107;"><td>XORM</td><td>201,267</td><td>1.81x</td><td>82,534</td><td>3,893</td></tr>
+</tbody>
+</table>
 
 ## 测试数据库
 
@@ -230,8 +318,8 @@ MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 ## 参考
 
 - 灵感来自 [benchplus/gocache](https://github.com/benchplus/gocache)
+- [ZORM 文档](https://github.com/IceWhaleTech/zorm)
+- [BORM 文档](https://github.com/orca-zhang/borm)
 - [GORM 文档](https://gorm.io/docs/)
 - [XORM 文档](https://xorm.io/docs/)
-- [ZORM 仓库](https://github.com/IceWhaleTech/zorm)
 - [SQLX 文档](https://jmoiron.github.io/sqlx/)
-- [BORM 仓库](https://github.com/orca-zhang/borm)
