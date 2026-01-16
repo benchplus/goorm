@@ -83,25 +83,34 @@ go test -bench=GetByID -benchmem
 
 ## Benchmark Results
 
-The benchmark results show:
-- **ns/op**: Nanoseconds per operation
-- **B/op**: Bytes allocated per operation
-- **allocs/op**: Number of allocations per operation
-
 ### Quick Summary
 
-| Test Case | [**ZORM**](https://github.com/IceWhaleTech/zorm) | [**BORM**](https://github.com/orca-zhang/borm) | [**BUN**](https://bun.uptrace.dev/) | [**ENT**](https://github.com/ent/ent) | [**GORM**](https://gorm.io/) | [**SQLX**](https://github.com/jmoiron/sqlx) | [**XORM**](https://xorm.io/) |
-|-----------|---------------------------------------------------|-------------------------------------------------|-------------------------------------|----------------------------------------|------------------------------|---------------------------------------------|------------------------------|
-| InsertSingle | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | 🐌 | 🐌 |
-| InsertBatch | 🚀 | 🚀 | ✈️ | 🐌 | ✈️ | 🐌 | 🐌 |
-| GetByID | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | ✈️ | 🐌 |
-| GetByIDs | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | ✈️ | 🐌 |
-| Update | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | 🐌 | 🐌 |
-| Delete | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | 🐌 | 🐌 |
-| Count | 🚀 | 🚀 | ✈️ | 🐌 | ✈️ | ✈️ | 🐌 |
-| GetAll | 🚀 | 🚀 | ✈️ | ✈️ | ✈️ | ✈️ | 🐌 |
+<table>
+<thead>
+<tr>
+<th>Test Case</th>
+<th><a href="https://github.com/IceWhaleTech/zorm"><strong>ZORM</strong></a></th>
+<th><a href="https://github.com/orca-zhang/borm"><strong>BORM</strong></a></th>
+<th><a href="https://bun.uptrace.dev/"><strong>BUN</strong></a></th>
+<th><a href="https://github.com/ent/ent"><strong>ENT</strong></a></th>
+<th><a href="https://gorm.io/"><strong>GORM</strong></a></th>
+<th><a href="https://github.com/jmoiron/sqlx"><strong>SQLX</strong></a></th>
+<th><a href="https://xorm.io/"><strong>XORM</strong></a></th>
+</tr>
+</thead>
+<tbody>
+<tr><td>InsertSingle</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFA500;">🟠 3.13x</td><td style="background-color: #FFA500;">🟠 3.46x</td><td style="background-color: #FF6347;">🔴 7.09x</td><td style="background-color: #FF6347;">🔴 60.61x</td><td style="background-color: #FF6347;">🔴 61.12x</td></tr>
+<tr><td>InsertBatch</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFC107;">🟡 1.30x</td><td style="background-color: #FFA500;">🟠 2.50x</td><td style="background-color: #FFC107;">🟡 1.89x</td><td style="background-color: #FFA500;">🟠 3.57x</td><td style="background-color: #FFA500;">🟠 3.33x</td></tr>
+<tr><td>GetByID</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.01x</td><td style="background-color: #FFC107;">🟡 1.52x</td><td style="background-color: #FFC107;">🟡 1.85x</td><td style="background-color: #FFC107;">🟡 1.90x</td><td style="background-color: #FFA500;">🟠 2.00x</td><td style="background-color: #FFA500;">🟠 3.12x</td></tr>
+<tr><td>GetByIDs</td><td style="background-color: #4CAF50;">🟢 1.01x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFC107;">🟡 1.17x</td><td style="background-color: #FFC107;">🟡 1.38x</td><td style="background-color: #FFC107;">🟡 1.39x</td><td style="background-color: #FFC107;">🟡 1.36x</td><td style="background-color: #FFC107;">🟡 1.98x</td></tr>
+<tr><td>Update</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFA500;">🟠 2.67x</td><td style="background-color: #FF6347;">🔴 9.86x</td><td style="background-color: #FF6347;">🔴 7.06x</td><td style="background-color: #FF6347;">🔴 82.52x</td><td style="background-color: #FF6347;">🔴 84.00x</td></tr>
+<tr><td>Delete</td><td style="background-color: #4CAF50;">🟢 1.01x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFA500;">🟠 2.31x</td><td style="background-color: #FFA500;">🟠 2.62x</td><td style="background-color: #FF6347;">🔴 6.40x</td><td style="background-color: #FF6347;">🔴 105.84x</td><td style="background-color: #FF6347;">🔴 101.85x</td></tr>
+<tr><td>Count</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.01x</td><td style="background-color: #FFA500;">🟠 2.15x</td><td style="background-color: #FF6347;">🔴 13.40x</td><td style="background-color: #FFA500;">🟠 2.99x</td><td style="background-color: #FFA500;">🟠 4.34x</td><td style="background-color: #FF6347;">🔴 5.95x</td></tr>
+<tr><td>GetAll</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #4CAF50;">🟢 1.00x</td><td style="background-color: #FFC107;">🟡 1.14x</td><td style="background-color: #FFC107;">🟡 1.21x</td><td style="background-color: #FFC107;">🟡 1.43x</td><td style="background-color: #FFC107;">🟡 1.18x</td><td style="background-color: #FFC107;">🟡 1.91x</td></tr>
+</tbody>
+</table>
 
-> 🐌 for very-slow, ✈️ for fast, 🚀 for very-fast.
+> Ratio indicates performance multiplier relative to the fastest ORM (lower is better)
 >
 > ⭐ indicates the ORM is **both fast and memory-efficient** for this test case (Pareto-optimal in **ns/op** and **B/op**, lower is better). Stars are placed in the **ns/op** and **B/op** columns.
 
@@ -113,6 +122,11 @@ The benchmark results show:
 - **Database**: SQLite (in-memory, DSN uses `cache=shared&mode=memory`)
 - **CPU**: M4 Pro
 - **OS**: darwin (amd64)
+
+The benchmark results show:
+- **ns/op**: Nanoseconds per operation
+- **B/op**: Bytes allocated per operation
+- **allocs/op**: Number of allocations per operation
 
 #### InsertSingle (Single Record Insertion)
 
